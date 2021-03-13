@@ -4,6 +4,8 @@ const priceInput = document.querySelector('#price');
 const timeInElement = document.querySelector('#timein');
 const timeOutElement = document.querySelector('#timeout');
 
+
+
 const TIMES = ['12:00', '13:00', '14:00'];
 
 const minPrice = {
