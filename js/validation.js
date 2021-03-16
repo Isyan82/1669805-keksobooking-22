@@ -28,9 +28,9 @@ const setValidation = () => {
       1: [1],
       2: [1, 2],
       3: [1, 2, 3],
-      100: [0]
+      100: [0],
     };
-    return function (event) {
+    return function () {
       const value = +param1.value;
       const options = param2.options;
       const optionsLength = options.length;
