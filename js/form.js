@@ -52,4 +52,5 @@ const changeFormElements = () => {
   synchronizeFields(timeInElement, timeOutElement, TIMES, TIMES, syncValue);
 };
 
+
 export { changeFormElements };
