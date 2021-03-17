@@ -23,27 +23,27 @@ const setValidation = () => {
   capacity.options[2].selected = true;
 
 
-  function roomsSincGuest(param1, param2) {
+  const roomsSincGuest = (rooms, guest) => {
     const optionsMapping = {
       1: [1],
       2: [1, 2],
       3: [1, 2, 3],
       100: [0],
     };
-    return function () {
-      const value = +param1.value;
-      const options = param2.options;
+    return () => {
+      const value = parseFloat(rooms.value)
+      const options = guest.options;
       const optionsLength = options.length;
       const availableOptions = optionsMapping[value];
 
-      for (let i = 0; i < optionsLength; i++) {
-        if (availableOptions.indexOf(+options[i].value) !== -1) {
-          options[i].disabled = false;
-          if (+options[i].value === value || availableOptions.length === 1) {
-            options[i].selected = true;
+      for (const option of options) {
+        if (availableOptions.indexOf(parseFloat(option.value)) !== -1) {
+          option.disabled = false;
+          if (parseFloat(option.value) === value || availableOptions.length === 1) {
+            option.selected = true;
           }
         } else {
-          options[i].disabled = true;
+          option.disabled = true;
         }
       }
     };
