@@ -33,7 +33,6 @@ const setValidation = () => {
     return () => {
       const value = parseFloat(rooms.value)
       const options = guest.options;
-      const optionsLength = options.length;
       const availableOptions = optionsMapping[value];
 
       for (const option of options) {
