@@ -1,12 +1,12 @@
 import { createMap } from './map.js'
 import { getAds } from './data.js'
-import { changeFormElements } from './form.js'
+import { changeFormElements, disableForms } from './form.js'
 import { setValidation } from './validation.js'
-import { getPostServer } from './server.js'
-
+import { setPublicationAdHandler } from './server.js'
+disableForms()
 getAds().then((ads) => createMap(ads));
 changeFormElements();
 setValidation();
-getPostServer();
+setPublicationAdHandler();
 
 

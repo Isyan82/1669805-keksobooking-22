@@ -1,5 +1,8 @@
 
 import { isEscEvent } from './util.js'
+import { initLatLng } from './map.js'
+const inputAdress = document.querySelector('#address');
+
 
 const formElements = document.querySelector('.ad-form')
 const mainWindow = document.querySelector('main');
@@ -18,7 +21,7 @@ const errorTemplate = document.querySelector('#error')
 errorTemplate.classList.add('visually-hidden');
 mainWindow.append(errorTemplate);
 
-const getPostServer = () => {
+const setPublicationAdHandler = () => {
   // работа с пользовательскими окнами
   // окно успеха
   formElements.addEventListener('submit', (evt) => {
@@ -42,6 +45,8 @@ const getPostServer = () => {
         }
         return response.json();
       })
+    formElements.reset();
+    inputAdress.value = `${initLatLng.lat}, ${initLatLng.lng}`;
   })
 
 
@@ -66,4 +71,4 @@ const getPostServer = () => {
 }
 
 
-export { getPostServer };
+export { setPublicationAdHandler };

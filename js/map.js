@@ -1,7 +1,10 @@
 import { createCustomPopup } from './popup.js'
-import { disableForms, enableForms } from './form.js'
+import { enableForms } from './form.js'
 
-disableForms()
+const initLatLng = {
+  lat: 35.68361,
+  lng: 139.75363,
+};
 
 //создание карты
 const createMap = (ads) => {
@@ -11,10 +14,7 @@ const createMap = (ads) => {
     .on('load', () => {
       enableForms()
     })
-    .setView({
-      lat: 35.683613,
-      lng: 139.753637,
-    }, 10);
+    .setView(initLatLng, 10);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -31,10 +31,7 @@ const createMap = (ads) => {
   });
 
   const mainPinMarker = L.marker(
-    {
-      lat: 35.68361,
-      lng: 139.75363,
-    },
+    initLatLng,
     {
       draggable: true,
       icon: mainPinIcon,
@@ -88,6 +85,10 @@ const createMap = (ads) => {
         },
       );
   });
+  return () => {
+    mainPinIcon.setLatLng(initLatLng)
+  }
+
 };
 
-export { createMap };
+export { createMap, initLatLng };
