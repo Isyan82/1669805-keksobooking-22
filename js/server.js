@@ -32,8 +32,6 @@ const getPostServer = () => {
       },
     )
       .then((response) => {
-        // console.log(response.status);
-        // console.log(response.ok)
         if (response.ok === false) {
           alert('Не удалось отправить данные на сервер')
         } else {
@@ -43,9 +41,6 @@ const getPostServer = () => {
         }
         return response.json();
       })
-    // .then((json) => {
-    //   console.log('Результат', json)
-    // })
   })
 
 
