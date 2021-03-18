@@ -76,6 +76,9 @@ const showAlert = (message) => {
   }, 5000);
 }
 
+const isEscEvent = (evt) => {
+  return evt.key === ('Escape' || 'Esc');
+};
 
-export {getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, declOfNum, showAlert};
+export {getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, declOfNum, showAlert, isEscEvent};
 

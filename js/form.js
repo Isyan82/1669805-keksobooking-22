@@ -22,8 +22,6 @@ const enableForms = () => {
   adForm.querySelectorAll('fieldset').forEach((it) => it.disabled = false);
 }
 
-
-
 // синхронизация полей формы
 const typeOfAccommodation = document.querySelector('#type');
 const priceInput = document.querySelector('#price');
