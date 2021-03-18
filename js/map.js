@@ -1,4 +1,7 @@
 import { createCustomPopup } from './popup.js'
+import { disableForms, enableForms } from './form.js'
+
+disableForms()
 
 //создание карты
 const createMap = (ads) => {
@@ -6,12 +9,12 @@ const createMap = (ads) => {
   const map = L.map('map-canvas')
 
     .on('load', () => {
-
+      enableForms()
     })
     .setView({
       lat: 35.683613,
       lng: 139.753637,
-    }, 12);
+    }, 10);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -57,8 +60,8 @@ const createMap = (ads) => {
 
   points.forEach((point) => {
     const { location } = point;
-    const lat = location.x;
-    const lng = location.y;
+    const lat = location.lat;
+    const lng = location.lng;
 
     const icon = L.icon({
       iconUrl: 'img/pin.svg',

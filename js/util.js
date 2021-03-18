@@ -46,5 +46,36 @@ const declOfNum = (n, text_forms)=> {
   return text_forms[2];
 }
 
-export {getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, declOfNum};
+// окно с алертом об ошибке запроса с сервера
+const showAlert = (message) => {
+  const mainWindow = document.querySelector('main');
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 1000;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.position = 'fixed';
+  alertContainer.style.width = '400px';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.margin = 'auto';
+  alertContainer.style.marginTop = '180px';
+  alertContainer.style.border = '4px solid black';
+  alertContainer.style.borderRadius = '10px';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '28px';
+  alertContainer.style.color = 'white';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  mainWindow.appendChild(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, 5000);
+}
+
+
+export {getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, declOfNum, showAlert};
 
