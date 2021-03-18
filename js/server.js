@@ -33,7 +33,8 @@ const getPostServer = () => {
     )
       .then((response) => {
         if (response.ok === false) {
-          alert('Не удалось отправить данные на сервер')
+          // Объявление о неуспешной оправке формы
+          errorTemplate.classList.remove('visually-hidden');
         } else {
           // Объявление об успешной оправке формы
           successTemplate.classList.remove('visually-hidden');
