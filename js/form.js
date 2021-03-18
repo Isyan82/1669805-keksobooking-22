@@ -1,10 +1,33 @@
+// работа с картой
+// скрываем элементы по дз
+const disableForms = () => {
+  const mapFilters = document.querySelector('.map__filters');
+  mapFilters.classList.add('ad-form--disabled');
+  mapFilters.querySelectorAll('select, input').forEach((it) => it.disabled = true);
+
+  const adForm = document.querySelector('.ad-form');
+  adForm.classList.add('ad-form--disabled');
+  adForm.querySelectorAll('fieldset').forEach((it) => it.disabled = true);
+
+};
+
+// открываем элементы по дз
+const enableForms = () => {
+  const mapFilters = document.querySelector('.map__filters');
+  mapFilters.classList.remove('ad-form--disabled');
+  mapFilters.querySelectorAll('select, input').forEach((it) => it.disabled = false);
+
+  const adForm = document.querySelector('.ad-form');
+  adForm.classList.remove('ad-form--disabled');
+  adForm.querySelectorAll('fieldset').forEach((it) => it.disabled = false);
+}
+
+// синхронизация полей формы
 const typeOfAccommodation = document.querySelector('#type');
 const priceInput = document.querySelector('#price');
 
 const timeInElement = document.querySelector('#timein');
 const timeOutElement = document.querySelector('#timeout');
-
-
 
 const TIMES = ['12:00', '13:00', '14:00'];
 
@@ -52,5 +75,4 @@ const changeFormElements = () => {
   synchronizeFields(timeInElement, timeOutElement, TIMES, TIMES, syncValue);
 };
 
-
-export { changeFormElements };
+export { changeFormElements, disableForms, enableForms};
