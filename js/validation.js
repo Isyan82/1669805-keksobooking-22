@@ -1,3 +1,6 @@
+const roomNumber = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+
 const setValidation = () => {
   // добавление нужных атрибутов
   const adForm = document.querySelector('.ad-form');
@@ -16,8 +19,7 @@ const setValidation = () => {
   const priceInput = document.querySelector('#price');
   priceInput.setAttribute('max', '1000000');
   // валидация rooms - capacity
-  const roomNumber = document.querySelector('#room_number');
-  const capacity = document.querySelector('#capacity');
+
   capacity.querySelectorAll('option').forEach((it) => it.disabled = true);
   capacity.options[2].disabled = false;
   capacity.options[2].selected = true;
@@ -50,4 +52,4 @@ const setValidation = () => {
   roomNumber.addEventListener('change', roomsSincGuest(roomNumber, capacity));
 }
 
-export { setValidation };
+export { setValidation, capacity };
