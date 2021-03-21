@@ -14,7 +14,7 @@ const housingTypeElement = filtersFormElement.querySelector('#housing-type');
 
 
 getAds().then((ads) => {
-  createMap(ads)
+  createMap(ads.slice(0, SHOW_ADS_COUNTS)) // это я тут допилил, потому, что по заданию количество меток ограничено сразу при выводе на карту.
   housingTypeElement.addEventListener('change', (evt) => {
     evt.preventDefault()
     const filteredAds = filterByHousingType(ads, housingTypeElement.value );
