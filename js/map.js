@@ -1,28 +1,61 @@
 import { createCustomPopup } from './popup.js'
-import { enableForms } from './form.js'
-
+import { enableForms, disableForms } from './form.js'
+disableForms()
 const initLatLng = {
   lat: 35.68361,
   lng: 139.75363,
 };
+/* global L:readonly */
+const map = L.map('map-canvas')
 
+  .on('load', () => {
+    enableForms()
+  })
+  .setView(initLatLng, 10);
+
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  },
+).addTo(map);
+
+const markers = [];
+
+const createMarkers = (points) => {
+  points.forEach((point) => {
+    const { location } = point;
+    const lat = location.lat;
+    const lng = location.lng;
+
+    const icon = L.icon({
+      iconUrl: 'img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
+
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        icon,
+      },
+    );
+    markers.push(marker);
+    marker
+      .addTo(map)
+      .bindPopup(
+        () => createCustomPopup(point),
+        {
+          keepInView: true,
+        },
+      );
+  });
+}
 //создание карты
 const createMap = (ads) => {
-  /* global L:readonly */
-  const map = L.map('map-canvas')
-
-    .on('load', () => {
-      enableForms()
-    })
-    .setView(initLatLng, 10);
-
-  L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    },
-  ).addTo(map);
-
   // создание красной метки
   const mainPinIcon = L.icon({
     iconUrl: 'img/main-pin.svg',
@@ -53,42 +86,15 @@ const createMap = (ads) => {
 
 
   // создание синих меток
-  const points = ads;
+  createMarkers(ads)
 
-  points.forEach((point) => {
-    const { location } = point;
-    const lat = location.lat;
-    const lng = location.lng;
-
-    const icon = L.icon({
-      iconUrl: 'img/pin.svg',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-    });
-
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon,
-      },
-    );
-
-    marker
-      .addTo(map)
-      .bindPopup(
-        () => createCustomPopup(point),
-        {
-          keepInView: true,
-        },
-      );
-  });
   return () => {
     mainPinIcon.setLatLng(initLatLng)
   }
 
 };
-
-export { createMap, initLatLng };
+const reInit = (ads) => {
+  markers.forEach((marker) => marker.remove())
+  createMarkers(ads)
+}
+export { createMap, initLatLng, reInit };

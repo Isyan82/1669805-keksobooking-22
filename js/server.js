@@ -1,7 +1,10 @@
 
 import { isEscEvent } from './util.js'
 import { initLatLng } from './map.js'
+import { setValidation, capacity } from './validation.js'
+
 const inputAdress = document.querySelector('#address');
+const resetButton = document.querySelector('.ad-form__reset')
 
 
 const formElements = document.querySelector('.ad-form')
@@ -46,6 +49,7 @@ const setPublicationAdHandler = () => {
         return response.json();
       })
     formElements.reset();
+    capacity.options[2].selected = true;
     inputAdress.value = `${initLatLng.lat}, ${initLatLng.lng}`;
   })
 
@@ -68,6 +72,13 @@ const setPublicationAdHandler = () => {
       }
     }
   });
+  // обработка события кнопки "Очистить"
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    formElements.reset();
+    setValidation();
+    inputAdress.value = `${initLatLng.lat}, ${initLatLng.lng}`;
+  })
 }
 
 
