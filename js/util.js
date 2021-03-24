@@ -17,9 +17,9 @@ const getRandomInteger = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-// функция случайного выбора элемента из значений //////////////////////////////
+// функция случайного выбора элемента из значений
 const getRandomItem = (items) => items[getRandomInteger(0, items.length - 1)];
-// Функция вставки случайного числа в строку ///////////////////////////////////
+// Функция вставки случайного числа в строку
 const addLeadingZero = (num) => `0${num}`.slice(-2);
 
 // функция выбора случайного колличества элементов без повторений
