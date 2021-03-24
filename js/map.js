@@ -1,6 +1,10 @@
+/* global _:readonly */
 import { createCustomPopup } from './popup.js'
 import { enableForms, disableForms } from './form.js'
 disableForms()
+
+const RERENDER_DELAY = 500;
+
 const initLatLng = {
   lat: 35.68361,
   lng: 139.75363,
@@ -93,8 +97,9 @@ const createMap = (ads) => {
   }
 
 };
-const reInit = (ads) => {
+const reInit = _.debounce((ads) => {
   markers.forEach((marker) => marker.remove())
   createMarkers(ads)
-}
+},RERENDER_DELAY)
+
 export { createMap, initLatLng, reInit };

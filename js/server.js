@@ -24,9 +24,8 @@ const errorTemplate = document.querySelector('#error')
 errorTemplate.classList.add('visually-hidden');
 mainWindow.append(errorTemplate);
 
+// сообщение о статусе отправки объявления
 const setPublicationAdHandler = () => {
-  // работа с пользовательскими окнами
-  // окно успеха
   formElements.addEventListener('submit', (evt) => {
     evt.preventDefault()
     const formData = new FormData(evt.target);
@@ -72,6 +71,7 @@ const setPublicationAdHandler = () => {
       }
     }
   });
+
   // обработка события кнопки "Очистить"
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
