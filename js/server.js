@@ -48,7 +48,7 @@ const setPublicationAdHandler = () => {
         return response.json();
       })
     formElements.reset();
-    capacity.options[2].selected === true;
+    capacity.options[2].selected = true;
     inputAdress.value = `${initLatLng.lat}, ${initLatLng.lng}`;
   })
 
