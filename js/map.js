@@ -1,15 +1,17 @@
 /* global _:readonly */
+/* global L:readonly */
 import { createCustomPopup } from './popup.js'
 import { enableForms, disableForms } from './form.js'
 disableForms()
 
 const RERENDER_DELAY = 500;
+const precisionFloat = 5;
 
 const initLatLng = {
   lat: 35.68361,
   lng: 139.75363,
 };
-/* global L:readonly */
+
 const map = L.map('map-canvas')
 
   .on('load', () => {
@@ -58,6 +60,7 @@ const createMarkers = (points) => {
       );
   });
 }
+
 //создание карты
 const createMap = (ads) => {
   // создание красной метки
@@ -78,7 +81,7 @@ const createMap = (ads) => {
   mainPinMarker.addTo(map);
 
   // вставка дефолтных координат в поле адреса
-  const precisionFloat = 5;
+
   const inputAdress = document.querySelector('#address');
   inputAdress.value = `${(mainPinMarker._latlng.lat).toFixed(precisionFloat)}, ${(mainPinMarker._latlng.lng).toFixed(precisionFloat)}`
 
@@ -97,9 +100,10 @@ const createMap = (ads) => {
   }
 
 };
+
 const reInit = _.debounce((ads) => {
   markers.forEach((marker) => marker.remove())
   createMarkers(ads)
-},RERENDER_DELAY)
+}, RERENDER_DELAY)
 
 export { createMap, initLatLng, reInit };

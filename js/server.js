@@ -17,7 +17,7 @@ const successTemplate = document.querySelector('#success')
 successTemplate.classList.add('visually-hidden');
 mainWindow.append(successTemplate);
 
-// оено неудачи
+// окно неудачи
 const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
