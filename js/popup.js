@@ -1,4 +1,4 @@
-import { declOfNum } from './util.js'
+import { transformEnding } from './util.js'
 const adCard = document.querySelector('#card').content;
 
 const createCustomPopup = (ad) => {
@@ -18,7 +18,7 @@ const createCustomPopup = (ad) => {
   cardElement.querySelector('.popup__title').textContent = offer.title;
   cardElement.querySelector('.popup__text--address').textContent = offer.address;
   cardElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
-  cardElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнат${declOfNum(offer.rooms, ['а', 'ы', ''])} для ${offer.guests} гост${declOfNum(offer.guests, ['я', 'ей', 'ей'])}`;
+  cardElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнат${transformEnding(offer.rooms, ['а', 'ы', ''])} для ${offer.guests} гост${transformEnding(offer.guests, ['я', 'ей', 'ей'])}`;
   cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   cardElement.querySelector('.popup__description').textContent = offer.description;
   cardElement.querySelector('.popup__type').textContent = offerTypes[offer.type];

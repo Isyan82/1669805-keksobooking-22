@@ -38,12 +38,12 @@ const makeUniqueRandomIntegerGenerator = (min, max) => {
   };
 };
 // функция склонения окончаний
-const declOfNum = (n, text_forms)=> {
-  n = Math.abs(n) % 100; const n1 = n % 10;
-  if (n > 10 && n < 20) { return text_forms[2]; }
-  if (n1 > 1 && n1 < 5) { return text_forms[1]; }
-  if (n1 == 1) { return text_forms[0]; }
-  return text_forms[2];
+const transformEnding = (number, textForms) => {
+  number = Math.abs(number) % 100; const n1 = number % 10;
+  if (number > 10 && number < 20) { return textForms[2]; }
+  if (n1 > 1 && n1 < 5) { return textForms[1]; }
+  if (n1 == 1) { return textForms[0]; }
+  return textForms[2];
 }
 
 // окно с алертом об ошибке запроса с сервера
@@ -80,5 +80,5 @@ const isEscEvent = (evt) => {
   return evt.key === ('Escape' || 'Esc');
 };
 
-export {getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, declOfNum, showAlert, isEscEvent};
+export { getRandomFloat, getRandomInteger, addLeadingZero, getRandomItem, makeUniqueRandomIntegerGenerator, transformEnding, showAlert, isEscEvent };
 

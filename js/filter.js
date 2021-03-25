@@ -18,16 +18,18 @@ const filterByHousingFeatures = (ads, housingFeatures) => {
 // фильтрация жилья по цене
 const filterByHousingPrice = (ads, housingPrice) => {
   switch (housingPrice) {
-    case 'any':
+    case 'any': {
       return ads;
+    }
     case 'low': {
       return ads.filter(ad => ad.offer.price < 10000);
     }
     case 'middle': {
       return ads.filter(ad => ad.offer.price >= 10000 && ad.offer.price < 50000);
     }
-    case 'high':
+    case 'high': {
       return ads.filter(ad => ad.offer.price > 50000);
+    }
   }
 }
 
